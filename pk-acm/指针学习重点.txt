@@ -1,0 +1,24 @@
+#include<stdio.h>
+void change(int *a,int *b)
+{
+	int temp;
+	temp=*a;
+	*a=*b;
+	*b=temp;
+}//交换的是指针指向的对象
+void changezz(int *a,int *b)
+{
+	int * temp;
+	temp=a;
+	a=b;
+	b=temp;
+}//交换的是指针，而指针当形参传入函数，没有改变指针的值
+int main()
+{
+	int a=14,b=15;
+	int *p1=&a;
+	int *p2=&b;
+	change(p1,p2);
+	printf("%d,%d",*p1,*p2);
+	return 0;
+}

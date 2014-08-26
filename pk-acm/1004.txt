@@ -1,0 +1,15 @@
+#include <iostream>
+using namespace std;
+int main()
+{
+	float a;
+	float sum=0;
+	int i=0.0;
+	while(cin>>a)
+	{
+		sum+=a;
+		i++;
+	}
+	cout<<sum/1<<endl;
+	return 0;
+}

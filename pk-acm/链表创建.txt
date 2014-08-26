@@ -1,0 +1,94 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElemType;
+typedef struct  LNode
+{
+	ElemType data;
+	struct LNode *next;
+}LinkList;
+void CreateListF(LinkList *&L,ElemType a[],int n)//注意此行的*L和*&L运算的不同
+{
+	LinkList *s;
+	int i;
+	L=(LinkList*)malloc(sizeof(LinkList));
+	L->next=NULL;
+	for (i=0;i<n;i++)
+	{
+		s=(LinkList*)malloc(sizeof(LinkList));
+		s->data=a[i];
+		s->next=L->next;
+		L->next=s;
+	}
+}
+int main()
+{
+	LinkList *LList=NULL;
+	ElemType b[80]={0};
+	int n=80;
+	CreateListF(LList,b,n);
+	LinkList *p=LList;
+	while(p!=NULL)
+	{
+		if (p!=LList)
+		{
+			printf("%d\n",p->data);
+			p=p->next;
+		}
+		else
+		{
+			p=p->next;
+		}
+		
+		
+	}
+}
+/*
+#include <stdio.h>
+#include <stdlib.h>
+typedef int ElemType;
+typedef struct  LNode
+{
+	ElemType data;
+	struct LNode *next;
+}LinkList;
+void CreateListF(LinkList *&L,ElemType a[],int n)
+{
+	printf("%p\n",L);
+	LinkList *s;
+	int i;
+	L=(LinkList*)malloc(sizeof(LinkList));
+	printf("%p\n",L);
+	L->next=NULL;
+	for (i=0;i<n;i++)
+	{
+		s=(LinkList*)malloc(sizeof(LinkList));
+		s->data=a[i];
+		s->next=L->next;
+		L->next=s;
+	}
+}
+int main()
+{
+	LinkList *LList=NULL;
+	ElemType b[80]={0};
+	int n=80;
+	printf("%p\n",LList);
+	CreateListF(LList,b,n);
+	printf("%p\n",LList);
+	LinkList *p=LList;
+	while(p!=NULL)
+	{
+		if (p!=LList)
+		{
+			printf("%d\n",p->data);
+			p=p->next;
+		}
+		else
+		{
+			p=p->next;
+		}
+
+
+	}
+}
+*/

@@ -1,0 +1,135 @@
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+bool myfunction (string a,string b)
+{
+	return a<b;
+}
+int main()
+{
+	int N;
+	int i;
+	int sizz;
+	cin>>N;
+	string linshi;
+	vector<string> sel(N);
+	vector<string>::iterator pss=sel.begin();
+	for (;pss!=sel.end();pss++)
+	{
+		int s;
+		string lsbl;
+		cin>>linshi;
+		sizz=linshi.size();
+		int j=0;
+		for (i=0;i<sizz;i++)
+		{
+			if (linshi[i]=='-')
+			{
+				j++;
+			}
+			else
+				linshi[i-j]=linshi[i];
+		}
+
+		lsbl=linshi.substr(0,i-j);
+		*pss=lsbl;
+		s=i-j;
+		for (i=0;i<s;i++)
+		{
+			if (lsbl[i]=='A'||lsbl[i]=='B'||lsbl[i]=='C')
+			{
+				lsbl[i]='2';
+			}
+			if (lsbl[i]=='D'||lsbl[i]=='E'||lsbl[i]=='F')
+			{
+				lsbl[i]='3';
+			}
+			if (lsbl[i]=='G'||lsbl[i]=='H'||lsbl[i]=='I')
+			{
+				lsbl[i]='4';
+			}			
+			if (lsbl[i]=='J'||lsbl[i]=='K'||lsbl[i]=='L')
+			{
+				lsbl[i]='5';
+			}
+			if (lsbl[i]=='M'||lsbl[i]=='N'||lsbl[i]=='O')
+			{
+				lsbl[i]='6';
+			}
+			if (lsbl[i]=='P'||lsbl[i]=='R'||lsbl[i]=='S')
+			{
+				lsbl[i]='7';
+			}
+			if (lsbl[i]=='T'||lsbl[i]=='U'||lsbl[i]=='V')
+			{
+				lsbl[i]='8';
+			}
+			if (lsbl[i]=='W'||lsbl[i]=='X'||lsbl[i]=='Y')
+			{
+				lsbl[i]='9';
+			}
+			*pss=lsbl;
+		}
+	}
+	sort(sel.begin(),sel.end(),myfunction);
+/*	vector<string>::iterator ks=sel.begin();
+
+		for (;ks!=sel.end();ks++)
+		{
+			cout<<*ks<<endl;
+		}*/
+	vector<int> num(N,0);
+	vector<string>::iterator ks=sel.begin();
+	vector<int>::iterator ks3=num.begin();
+	for (;ks!=sel.end();ks++)
+	{
+		vector<string>::iterator ks2=sel.begin();
+		for (;ks2!=sel.end();ks2++)
+		{
+			if(*ks==*ks2)
+				*ks3=*ks3+1;
+		}
+		ks3++;
+	}
+	ks=sel.begin();
+	ks3=num.begin();
+	string shuchu;
+	if (*ks3>1)
+	{
+		
+		shuchu=*ks;
+		for(i=0;i<3;i++)
+			cout<<shuchu[i];
+		cout<<'-';
+		for(i=3;i<7;i++)
+			cout<<shuchu[i];
+		cout<<' ';
+		cout<<*ks3<<endl;
+	}
+	ks++;
+	ks3++;
+	vector<string>::iterator ss;
+	for (;ks!=sel.end();ks++)
+	{
+		ss=ks;
+		ss--;
+		if (*ks!=*ss&&*ks3>1)
+		{
+			shuchu=*ks;
+			for(i=0;i<3;i++)
+				cout<<shuchu[i];
+			cout<<'-';
+			for(i=3;i<7;i++)
+			{
+				cout<<shuchu[i];
+				
+			}
+			cout<<' ';
+			cout<<*ks3<<endl;					
+		}		
+		ks3++;
+	}
+	return 0;
+}

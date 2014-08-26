@@ -1,0 +1,260 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+
+public class Main {
+
+	enum dir {A,B,C,D,E,F,G,H}
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		int RowNumber = in.nextInt();    //定义行数，接收int数据
+		int ColumnNumber = in.nextInt(); //定义列数，接收int数据
+		int WordNumber = in.nextInt();   //定义字母，接收int数据
+		ArrayList<String> PuzzleArray = new ArrayList<String>();
+		ArrayList<String> WordArray = new ArrayList<String>();
+		for(int i=0;i<RowNumber;i++){
+			String Temp = in.next();
+			PuzzleArray.add(Temp);
+		}
+		for(int i=0;i<WordNumber;i++){
+			String Temp = in.next();
+			WordArray.add(Temp);
+		}
+		for(int l=0;l<WordArray.size();l++){
+//			System.out.println("L:"+l);
+			String Temp = WordArray.get(l);//要匹配的字符
+			int TempLen = Temp.length();			
+			for(int m=0;m<RowNumber;m++){
+				for(int n=0;n<ColumnNumber;n++){
+					int rowBegin = m;
+					int columnBegin = n;
+					int tempWordNum = 0;
+					int tempWordNum2 = tempWordNum;
+					String puzzleWord = PuzzleArray.get(rowBegin);
+					char tempPuzzleChar = puzzleWord.charAt(columnBegin);
+					
+					boolean tag = true;
+					if(tempPuzzleChar==Temp.charAt(tempWordNum)){
+						for(int j=0;j<8&&tag==true;j++){
+							if(j==0&&tag==true){
+								while(rowBegin-1>=0){
+									rowBegin--;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							if(j==1&&tag==true){
+								while(rowBegin-1>=0&&columnBegin+1<ColumnNumber){
+									rowBegin--;
+									columnBegin++;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							if(j==2&&tag==true){
+								while(columnBegin+1<ColumnNumber){
+									columnBegin++;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							if(j==3&&tag==true){
+								while(rowBegin+1<RowNumber&&columnBegin+1<ColumnNumber){
+									columnBegin++;
+									rowBegin++;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							if(j==4&&tag==true){
+								while(rowBegin+1<RowNumber){
+									rowBegin++;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							
+							if(j==5&&tag==true){
+								while(rowBegin+1<RowNumber&&columnBegin-1>=0){
+									columnBegin--;
+									rowBegin++;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							if(j==6&&tag==true){
+								while(columnBegin-1>=0){
+									columnBegin--;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							if(j==7&&tag==true){
+								while(rowBegin-1>=0&&columnBegin-1>=0){
+									columnBegin--;
+									rowBegin--;
+									tempWordNum2++;
+									puzzleWord = PuzzleArray.get(rowBegin);
+									tempPuzzleChar = puzzleWord.charAt(columnBegin);
+									char tempWord = WordArray.get(l).charAt(tempWordNum2);
+									if(tempPuzzleChar==tempWord){
+										if(tempWordNum2==TempLen-1){
+											System.out.println(m+" "+n+" "+dir(j));
+											tag=false;
+											break;
+										}
+											
+									}
+									else{
+										rowBegin = m;
+										columnBegin = n;
+										tempWordNum2 = tempWordNum;										
+										break;
+									}
+								}
+							}
+							
+						}
+					}
+				}
+			}
+		}
+
+	}
+
+	static char dir(int i){
+	switch(i)
+	{ 
+		case 0:
+			return 'A';
+		case 1:
+			return 'B';
+		case 2:
+			return 'C';
+		case 3:
+			return 'D';
+		case 4:
+			return 'E';
+		case 5:
+			return 'F';
+		case 6:
+			return 'G';
+		case 7:
+			return 'H';
+	}
+	return 0;
+	}
+			
+}

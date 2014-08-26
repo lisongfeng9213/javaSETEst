@@ -1,0 +1,119 @@
+#include <stdio.h>
+#define maxsize 50
+struct
+{
+	char data[maxsize];
+	int top;
+}op;
+void trans(char exp[],char postexp[])
+{
+	char ch;
+	int i=0,j=0;
+	ch=exp[i];i++;
+	op.top=-1;
+	while(ch!='\0')
+	{
+		switch (ch)
+		{
+		case '(':
+			op.top++;
+			op.data[op.top]='(';
+			i++;
+			break;
+		case '+':
+		case '-':
+			while (op.top!=-1 && op.data[op.top]!='(')
+			{   
+				postexp[j]=op.data[op.top]; j++;
+				op.top--;
+			}
+			op.top++;op.data[op.top]=ch;
+			break;
+		case ')':
+			while (op.data[op.top]!='(')
+			{
+				postexp[j]=op.data[op.top];
+				j++;
+				op.top--;
+			}
+			op.top--;
+			break;
+		case '*':
+		case '/':
+			while (op.top!=-1 && op.data[op.top]!='(' 
+				&& (op.data[op.top]=='*' || op.data[op.top]=='/'))
+			{   postexp[j]=op.data[op.top];j++;
+			op.top--;
+			}
+			op.top++;op.data[op.top]=ch;
+			break;
+		case ' ':break;
+		default:
+			while(ch>'0'&&ch<'9')
+			{
+				postexp[j]=ch;j++;
+				ch=exp[i];i++;
+			}
+			i--;
+			postexp[j]='#';j++;
+		}
+	}
+	postexp[j]=op.data[op.top];j++;
+	op.top--;
+	postexp[j]='\0';
+}
+struct 
+{
+	float data[maxsize];
+	int top;
+}st;
+int copputer(char postexp[])
+{
+	int i=0;
+	char ch;
+	ch=postexp[i];
+	float a=0.0;
+	while (ch!='\0')
+	{
+		switch (ch)
+		{
+		case '+':
+			st.data[st.top-1]=st.data[st.top]+st.data[st.top-1];
+			st.top--;
+			break;
+		case '-':
+			st.data[st.top-1]=st.data[st.top]-st.data[st.top-1];
+			st.top--;
+			break;
+		case '*':
+			st.data[st.top-1]=st.data[st.top]*st.data[st.top-1];
+			st.top--;
+			break;
+		case '/':
+			st.data[st.top-1]=st.data[st.top]/st.data[st.top-1];
+			st.top--;
+			break;
+		case '#':
+			break;
+		default:
+			a=0;
+			while(ch>'0'&&ch<'9')
+			{
+				a=a*10+ch-'0';
+				ch=postexp[i];i++;
+			}
+			st.top++;
+			st.data[st.top]=a;
+		}
+		ch=postexp[i];i++;
+	}
+	return st.data[st.top];
+	printf("%d",st.data[st.top]);
+}
+int main()
+{
+	char postexp[15]="(89+29-(12-3))";
+	char exp[20]="\0";
+	trans(exp,postexp);
+	copputer(exp);
+}

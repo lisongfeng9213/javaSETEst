@@ -1,0 +1,16 @@
+#include <stdio.h>
+int main()
+{
+	double a;
+	double sum=0;
+	double b;
+	int n=0;
+	while (scanf("%lf",&a)!=EOF)
+	{
+		sum=sum+a;
+		n++;
+	}
+	b=sum/n;
+	printf("$");
+	printf("%.2lf",b);
+}

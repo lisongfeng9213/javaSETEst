@@ -1,0 +1,19 @@
+#include <stdio.h>
+int main()
+{
+	float a=0.0;
+	while(scanf("%f",&a)!=EOF&&a!=0.00)
+	{
+		float sum=0.0;
+		int i;
+		for (i=2;i<1000;i++)
+		{
+			sum=sum+1.0/i;
+			if (sum>a)
+				break;
+		}
+		printf("%d",i-1);
+		printf(" ");
+		printf("card(s)\n");
+	}
+}

@@ -1,0 +1,27 @@
+#include <stdio.h>
+#define maxsize 30
+struct 
+{
+	char data[maxsize];
+	int top;
+}st;
+void push(char a)
+{
+	st.top++;
+	st.data[top]=a;
+}
+void pop()
+{
+	st.top--;
+}
+void init()
+{
+	st.top=-1;
+}
+int main()
+{
+	int 
+	if ()
+	{
+	}
+}
