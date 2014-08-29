@@ -73,12 +73,14 @@ public class FileRead {
 		int strLen = 0;
 		strs = lineString.split(",");
 		strLen = strs.length;
-		if (strs[strLen - 1] == "Iris-setosa") {
+
+		if (strs[strLen - 1].equals("Iris-setosa")) {
 			y = 1;
 		} else {
-			y = 0;
+			y = -1;
 		}
-		x = new double[strLen];
+		System.out.println("SS"+strLen);
+		x = new double[strLen - 1];
 		for (int i = 0; i < strLen - 1; i++) {
 			x[i] = Double.parseDouble(strs[i]);
 		}
